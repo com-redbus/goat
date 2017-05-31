@@ -47,7 +47,7 @@ func main() {
 ```
 
 
-###Using Common Middlewares with Gorilla Mux
+### Using Common Middlewares with Gorilla Mux
 
 ```go
 import(
@@ -73,7 +73,7 @@ func main() {
 ```
 
 
-###Appending Middlewares to the Middleware Chain
+### Appending Middlewares to the Middleware Chain
 
 ```go
 import(
