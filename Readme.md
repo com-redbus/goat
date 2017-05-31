@@ -23,12 +23,11 @@ go get -u github.com/retiredbatman/goat
 
 
 ## Middlewares Included
-
-    * Logger -- logs to the console 
-    * Recovery -- recovers from a panic globally , stops the app from crashing
-    * NoCache -- adds no-cache headers to prevent api responses getting cache by the browser
-    * Compression -- gzip compression of response data , currently supports gzip.DefaultCompression level
-    * Monitor -- simple metrics about the app like uptime , pid , responsecounts etc
+* Logger -> logs to the console 
+* Recovery -> recovers from a panic globally , stops the app from crashing
+* NoCache -> adds no-cache headers to prevent api responses getting cache by the browser
+* Compression -> gzip compression of response data , currently supports gzip.DefaultCompression level
+* Monitor -> simple metrics about the app like uptime , pid , responsecounts etc
 
 ## Usage
 
@@ -129,6 +128,11 @@ func SampleMiddleware(next http.Handler) http.Handler {
 	})
 }
 ```
+
+## Future Plans
+
+Write a helmet like middleware for golang
+https://github.com/helmetjs/helmet
 
 
 
