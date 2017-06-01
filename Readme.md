@@ -174,11 +174,11 @@ func main() {
     http.ListenAndServe(":8080", router)
 }
 ```
-Currently CSP middleware does not support for nonce and hash. IsReportOnly switch when set to true will send *Content-Security-Policy-Report-Only* header whereas *Content-Security-Policy* is only sent
+Currently CSP middleware does not support for nonce and hash. IsReportOnly switch when set to true will send *Content-Security-Policy-Report-Only* header otherwise *Content-Security-Policy* is only sent
 
 For further information on CSP
-https://www.html5rocks.com/en/tutorials/security/content-security-policy
 
+https://www.html5rocks.com/en/tutorials/security/content-security-policy
 https://content-security-policy.com/
 
 ## Future Plans
