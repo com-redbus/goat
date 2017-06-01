@@ -2,10 +2,10 @@
 
 Go has the **net/http** package for managing requests and response,
 but sometimes we need some common code to handle repetitive code.
-This is where **middlewares** comes in to the rescue.
+This is where **middlewares** come in to the rescue.
 
-**Goat** is simple middleware package which has some commonly used middlewares
-and allows to add other middlewares because every middleware is an **http.Handler** or **http.HandlerFunc**
+**Goat** is simple middleware package which includes some commonly used middlewares
+and allows to add other middlewares because every middleware is a **http.Handler**
 
 ## Installation
 
@@ -20,6 +20,7 @@ go get -u github.com/retiredbatman/goat
   * http.Handler can be used as middleware
   * Writing New middlewares are very easy
   * Should with other golang web frameworks because these are basically http.Handler
+  * Content Secure Policy middleware 
 
 
 ## Middlewares Included
@@ -28,6 +29,7 @@ go get -u github.com/retiredbatman/goat
 * NoCache -> adds no-cache headers to prevent api responses getting cache by the browser
 * Compression -> gzip compression of response data , currently supports gzip.DefaultCompression level
 * Monitor -> simple metrics about the app like uptime , pid , responsecounts etc
+* CSP -> basic content secure policy headers
 
 ## Usage
 
@@ -128,6 +130,56 @@ func SampleMiddleware(next http.Handler) http.Handler {
 	})
 }
 ```
+
+### Usage for CSP Middleware
+
+```go
+import(
+    "fmt"
+    "net/http"
+
+    "github.com/gorilla/mux"
+    "github.com/retiredbatman/goat"
+)
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, "Its a test handler")
+}
+
+func main() {
+   router := mux.NewRouter()
+
+    commonMiddlewares := goat.CommonMiddlewares()
+    csp := goat.NewCSP(goat.CSPOptions{
+            DefaultSrc:     []string{"'self'", "s1.rdbuz.com"},
+            ScriptSrc:      []string{"'self'"},
+            StyleSrc:       []string{"'self'"},
+            ImgSrc:         []string{"'self'"},
+            ConnectSrc:     []string{"'self'"},
+            FontSrc:        []string{"'self'"},
+            ObjectSrc:      []string{"'self'"},
+            MediaSrc:       []string{"'self'"},
+            ChildSrc:       []string{"'self'"},
+            FormAction:     []string{"'self'"},
+            FrameAncestors: []string{"'none'"},
+            PluginTypes:    []string{"application/pdf"},
+            Sandbox:        []string{"allow-forms", "allow-scripts"},
+            ReportURI:      "/some-dummy-report-api",
+            IsReportOnly:   true,
+    })
+    cspAddedMiddleware := commonMiddlewares.Append(csp.CSP)
+    router.Handle("/", commonMiddlewares.ThenFunc(indexHandler))
+
+    router.Handle("/CSP", cspAddedMiddleware.ThenFunc(indexHandler))
+    http.ListenAndServe(":8080", router)
+}
+```
+Currently CSP middleware does not support for nonce and hash. IsReportOnly switch when set to true will send *Content-Security-Policy-Report-Only* header whereas *Content-Security-Policy* is only sent
+
+For further information on CSP
+https://www.html5rocks.com/en/tutorials/security/content-security-policy
+
+https://content-security-policy.com/
 
 ## Future Plans
 

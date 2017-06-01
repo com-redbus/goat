@@ -2,6 +2,7 @@ package goat
 
 import (
 	"bytes"
+	"html"
 	"html/template"
 	"log"
 	"net/http"
@@ -47,6 +48,6 @@ func Logger(next http.Handler) http.Handler {
 		buf := &bytes.Buffer{}
 		tem.Execute(buf, ls)
 
-		log.Println(buf.String())
+		log.Println(html.UnescapeString(buf.String()))
 	})
 }
