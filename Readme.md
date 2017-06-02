@@ -30,6 +30,7 @@ go get -u github.com/retiredbatman/goat
 * Compression -> gzip compression of response data , currently supports gzip.DefaultCompression level
 * Monitor -> simple metrics about the app like uptime , pid , responsecounts etc
 * CSP -> basic content secure policy headers
+* XSSFilter -> sets X-XSS-Protection header to the response
 
 ## Usage
 
