@@ -3,5 +3,5 @@
 "IsLogEnabled":true,
 "LogPath":"C:\\temp\\",
 "IsLogPushEnabledToRemote":true,
-"RemoteUrl":"https://logs.redbus.com/logger/postErr"
+"RemoteUrl":""
 }
