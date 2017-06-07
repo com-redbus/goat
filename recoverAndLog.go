@@ -1,4 +1,4 @@
-package goUtil
+package goat
 
 import (
 	"bytes"
