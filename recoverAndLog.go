@@ -11,7 +11,6 @@ import (
 	"os"
 	"runtime"
 	"time"
-	"zeus/config/globals"
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
@@ -58,9 +57,10 @@ func pushError(input map[string]interface{}) {
 			}
 		}
 		if isLogPushEnabledToRemote {
+			client := &http.Client{}
 			req, _ := http.NewRequest("POST", remoteURL, bytes.NewBuffer(payloadBytes))
 			req.Header.Set("Content-Type", "application/json")
-			globals.Client.Do(req)
+			client.Do(req)
 		}
 	}
 }

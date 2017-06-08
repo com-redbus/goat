@@ -34,6 +34,34 @@ go get -u github.com/retiredbatman/goat
 
 ## Usage
 
+### Create New Middleware Chain
+
+```go
+mc := goat.New()
+```
+
+### Using Single Middleware
+
+```go
+import (
+    "fmt"
+    "net/http"
+
+    "github.com/retiredbatman/goat"
+)
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, "Its a test handler")
+}
+
+func main() {
+    mux := http.NewServeMux()
+
+    mux.Handle("/", goat.Logger(http.HandlerFunc(indexHandler))
+    http.ListenAndServe(":8080", mux)
+}
+```
+
 ### Using Common Middlewares With DefaultServeMux
 
 ```go
@@ -113,6 +141,37 @@ func main() {
     http.ListenAndServe(":8080", router)
 }
 ```
+
+### Add MiddlewareChain once to the mux router
+
+```go
+package main
+
+import (
+    "fmt"
+    "net/http"
+
+    "github.com/gorilla/mux"
+    "github.com/retiredbatman/goat"
+)
+
+func indexH(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, "Its a test handler")
+}
+
+func main() {
+
+    router := mux.NewRouter()
+
+    commonMiddlewares := goat.CommonMiddlewares()
+    router.HandleFunc("/", indexH)
+    h := commonMiddlewares.Then(router)
+
+    http.ListenAndServe(":8080", h)
+}
+
+```
+
 
 ### Writing your own Middleware
 
