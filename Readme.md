@@ -10,7 +10,7 @@ and allows to add other middlewares because every middleware is a **http.Handler
 ## Installation
 
 ```
-go get -u github.com/retiredbatman/goat
+go get -u github.com/com-redbus/goat
 ```
 
 ## Features
@@ -47,7 +47,7 @@ import (
     "fmt"
     "net/http"
 
-    "github.com/retiredbatman/goat"
+    "github.com/com-redbus/goat"
 )
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
@@ -69,7 +69,7 @@ import (
     "fmt"
     "net/http"
 
-    "github.com/retiredbatman/goat"
+    "github.com/com-redbus/goat"
 )
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
@@ -94,7 +94,7 @@ import(
     "net/http"
 
     "github.com/gorilla/mux"
-    "github.com/retiredbatman/goat"
+    "github.com/com-redbus/goat"
 )
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
@@ -120,7 +120,7 @@ import(
     "net/http"
 
     "github.com/gorilla/mux"
-    "github.com/retiredbatman/goat"
+    "github.com/com-redbus/goat"
 )
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
@@ -152,7 +152,7 @@ import (
     "net/http"
 
     "github.com/gorilla/mux"
-    "github.com/retiredbatman/goat"
+    "github.com/com-redbus/goat"
 )
 
 func indexH(w http.ResponseWriter, r *http.Request) {
@@ -199,7 +199,7 @@ import(
     "net/http"
 
     "github.com/gorilla/mux"
-    "github.com/retiredbatman/goat"
+    "github.com/com-redbus/goat"
 )
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
