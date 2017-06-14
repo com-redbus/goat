@@ -103,7 +103,7 @@ func collectErrorData(req http.Request, err interface{}) map[string]interface{} 
 	runtime.Stack(trace, false)
 	stackTrace := fmt.Sprintf("%s", trace)
 	input := map[string]interface{}{
-		"AGENT":   agent,
+		"Agent":   agent,
 		"API":     req.URL.RequestURI(),
 		"METHOD":  req.Method,
 		"BODY":    bodyText,

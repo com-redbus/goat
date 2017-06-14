@@ -1,7 +1,7 @@
 {
 "Agent":"GoUtil",
-"IsLogEnabled":true,
+"IsLogEnabled":false,
 "LogPath":"C:\\temp\\",
-"IsLogPushEnabledToRemote":true,
+"IsLogPushEnabledToRemote":false,
 "RemoteUrl":""
 }
